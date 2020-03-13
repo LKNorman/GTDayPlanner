@@ -97,4 +97,75 @@ $(document).ready(function() {
     $plannerDiv.append($rowDiv);
   }
 
+  // row color function
+  function updateRowColor($hourRow, hour) {
+    if (test) {
+      console.log("rowColor ", nowHour24, hour);
+    }
+
+    if (hour < nowHour24) {
+      if (test) {
+        console.log("lessThan");
+      }
+      $hourRow.css("background-color", "lightgrey");
+    } else if (hour > nowHour24) {
+      if (test) {
+        console.log("greaterthan");
+      }
+      $hourRow.css("background-color", "lightgreen");
+    } else {
+      if (test) {
+        console.log("eqaul");
+      }
+      $hourRow.css("background-color", "tomato");
+    }
+  }
+
+  // saves to local storage
+  $(document).on("click", "i", function(event) {
+    event.preventDefault();
+
+    if (test) {
+      console.log("click pta before " + planTextArr);
+    }
+
+    let $index = $(this).attr("save-id");
+
+    let inputId = "#input-" + $index;
+    let $value = $(inputId).val();
+
+    planTextArr[$index] = $value;
+
+    if (test) {
+      console.log("value ", $value);
+    }
+    if (test) {
+      console.log("index ", $index);
+    }
+    if (test) {
+      console.log("click pta after " + planTextArr);
+    }
+
+    // shawdow pulse
+    $(`#saveid-${$index}`).removeClass("shadowPulse");
+    localStorage.setItem("storedPlans", JSON.stringify(planTextArr));
+  });
+
+  // function to color save button on change of input
+  $(document).on("change", "input", function(event) {
+    event.preventDefault();
+    if (test) {
+      console.log("onChange");
+    }
+    if (test) {
+      console.log("id", $(this).attr("hour-index"));
+    }
+
+    // neeed to check for save button
+
+    let i = $(this).attr("hour-index");
+
+    // more shawdow pulse
+    $(`#saveid-${i}`).addClass("shadowPulse");
+  });
 });
