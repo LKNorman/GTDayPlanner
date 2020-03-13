@@ -93,7 +93,7 @@ $(document).ready(function() {
     // set row color based on time
     updateRowColor($rowDiv, hour);
 
-    // add row to planner 
+    // add row to planner
     $plannerDiv.append($rowDiv);
   }
 
